@@ -8,6 +8,7 @@ gem 'haml-rails'
 gem 'highlight'
 gem 'webpacker'
 gem 'react-rails'
+gem 'coffee-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
