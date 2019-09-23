@@ -6,6 +6,7 @@ ruby '2.4.1'
 gem 'rails', '~> 5.2.2'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'highlight'
 gem 'webpacker'

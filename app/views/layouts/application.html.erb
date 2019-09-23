@@ -6,9 +6,23 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-    <%= yield %>
+    <%# Navbar %>
+    <div class="container-fluid">
+      <div class="navbar">
+          
+        <ul class="navbar-links">
+          <li class="brand"><%= link_to 'Pig Latin Translator', root_path %></li>
+          <li><%= link_to 'Translations', translations_path %></li>
+          <li><%= link_to 'New Translation', new_translation_path %></li>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

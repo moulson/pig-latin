@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
+  resources :translations
   root 'home#index'
-  get '/translations/', to: 'translate#index'
 end
