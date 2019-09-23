@@ -10,6 +10,10 @@ gem 'webpacker'
 gem 'react-rails'
 gem 'coffee-rails'
 gem 'uglifier'
+gem 'sass-rails'
+gem 'turbolinks'
+gem 'jbuilder'
+gem 'bcrypt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
