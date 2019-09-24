@@ -1,12 +1,10 @@
 <h1 class="page-header"> Listing translations</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th> Input</th>
-      <th> Output</th>
-      <th></th>
-      <th></th>
+      <th>Input</th>
+      <th>Output</th>
       <th></th>
     </tr>
   </thead>
@@ -15,9 +13,13 @@
       <tr>
         <td> <%= translation.input%> </td>
         <td> <%= translation.output%> </td>
-        <td> <%= link_to 'Show', translation%> </td>
-        <td> <%= link_to 'Edit', edit_translation_path(translation)%> </td>
-        <td> <%= link_to 'Destroy', translation, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+        <td> 
+          <div class="btn-group">
+            <%= link_to 'Show', translation, class: 'btn btn-default' %>
+            <%= link_to 'Edit', edit_translation_path(translation), class: 'btn btn-default'%>
+            <%= link_to 'Destroy', translation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %> 
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>

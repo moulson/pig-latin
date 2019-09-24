@@ -55,7 +55,6 @@ class TranslationsController < ApplicationController
   # DELETE /translations/1
   # DELETE /translations/1.json
   def destroy
-    debugger
     @translation.destroy
     respond_to do |format|
       format.html { redirect_to translations_url, notice: 'Translation was successfully destroyed.' }
@@ -64,7 +63,9 @@ class TranslationsController < ApplicationController
   end
 
   def translate(input)
-    return input.gsub(/\w+/){|e|"#{e=~/^(qu|[^aeiou]+)/i?$'+$&:e+?w}ay"}
+    output = input.gsub(/\w+/){|e|"#{e=~/^(qu|[^aeiou]+)/i?$'+$&:e}ay"}
+    
+    return output.downcase.titleize
   end
 
   private

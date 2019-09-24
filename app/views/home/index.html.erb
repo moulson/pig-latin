@@ -1,5 +1,23 @@
 <h1 class="page-header">Welcome</h1>
-<div>
-    <p>insert spec</p>
-    <p>You can find a link to the git repo <%= link_to 'here', 'https://github.com/moulson/pig-latin'%>
+<div class="row">
+    <div class="alert alert-info">
+        <div>You can find a link to the git repo <%= link_to 'here', 'https://github.com/moulson/pig-latin'%></div>
+    </div>
+</div>
+<div class="row">
+    <h4 class="page-header">The Challenge</h2>
+    <p>
+        In an effort to help extend Health and Safety knowledge to a variety of languages, we've been asked to come up with an app that will translate some terminology into... Pig Latin.
+    </p>
+    <p>
+        What we'd like to build is:
+    </p>
+    <ul>
+        <li>A ReactJS frontend which enables you to type and submit your requests for translations on a given terminology e.g. "Risk Assessment" or "Method Statement"</li>
+        <li>A Rails backend which is able to receive the requests for translations and subsequently translate them (e.g. to Iskray Assessmentyay)</li>
+        <li>A PostgreSQL database in order to store the results of our terminology and their translation</li>
+        <li>React immediately shows the results of the translation</li>
+        <li>Backend/Frontend implementation to allow for CRUD type actions on translations</li>
+        <li>Testing with Rspec, especially on how translations are implemented</li>
+    </ul>
 </div>

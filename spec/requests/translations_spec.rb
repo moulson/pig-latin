@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Translations", type: :request do
+describe "Translations", type: :request do
   describe "GET /translations" do
     it "works! (now write some real specs)" do
       get translations_path

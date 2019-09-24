@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe TranslationsController, type: :routing do
+describe 'TranslationsController', type: :routing do
   describe "routing" do
     it "routes to #index" do
       expect(:get => "/translations").to route_to("translations#index")

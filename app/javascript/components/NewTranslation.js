@@ -19,12 +19,13 @@ class NewTranslation extends React.Component{
             <div>
                 <label>Text to translate</label>
                 <input
+                    class="form-control"
                     type="text"
                     name="translation[input]"
                     value={this.state.input}
                     onChange={this.handleInputChange}
                 />
-                <input type="submit" value="Add Translation" />
+                <input type="submit" value="Add Translation" class="btn btn-primary" />
             </div>
         );
     }
