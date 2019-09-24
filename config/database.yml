@@ -19,8 +19,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: piglatin_prod
+  database: de51v6n5510jlc
   pool: 5
-  username: piglatin
-  password: password1
-  host: postgresql-elliptical-61967
+  username: bgyjhnfritikpx
+  password: b961bd9a3682ef15414aa4bd93659bc0ba5f1ce99b6bbdaf57bc061d695b3929
+  host: ec2-54-243-238-226.compute-1.amazonaws.com
