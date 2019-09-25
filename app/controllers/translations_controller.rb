@@ -41,9 +41,10 @@ class TranslationsController < ApplicationController
   # PATCH/PUT /translations/1
   # PATCH/PUT /translations/1.json
   def update
+    @translation.output = translate(translation_params[:input])
     respond_to do |format|
       if @translation.update(translation_params)
-        format.html { redirect_to @translation, notice: 'Translation was successfully updated.' }
+        format.html { redirect_to translations_path, notice: 'Translation was successfully updated.' }
         format.json { render :show, status: :ok, location: @translation }
       else
         format.html { render :edit }
