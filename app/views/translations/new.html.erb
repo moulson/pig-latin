@@ -1,3 +1,5 @@
 <h1 class="page-header">New Translation</h1>
 
-<%= react_component("NewTranslation", {translation: @translation})%>
+<%= form_with(model: @translation, local: true) do |form| %>
+    <%= react_component("NewTranslation", {translation: @translation})%>
+<% end %>

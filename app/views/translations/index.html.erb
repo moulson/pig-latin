@@ -24,5 +24,6 @@
     <% end %>
   </tbody>
 </table>
-
-<%= react_component("NewTranslation", {translation: @translations})%>
+<%= form_with(model: @translation, local: true) do |form| %>
+    <%= react_component("NewTranslation", {translation: @translations})%>
+<% end %>

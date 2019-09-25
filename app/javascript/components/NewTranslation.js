@@ -19,19 +19,17 @@ class NewTranslation extends React.Component{
     }
     render(){
         return(
-            <form action="/translations" method="post">
-                <div>
-                    <label>Text to translate</label>
-                    <input
-                        className="form-control"
-                        type="text"
-                        name="translation[input]"
-                        value={this.state.input}
-                        onChange={this.handleInputChange}
-                    />
-                    <input type="submit" value="Add Translation" className="btn btn-primary" />
-                </div>
-            </form>
+            <div>
+                <label>Text to translate</label>
+                <input
+                    className="form-control"
+                    type="text"
+                    name="translation[input]"
+                    value={this.state.input}
+                    onChange={this.handleInputChange}
+                />
+                <input type="submit" value="Add Translation" className="btn btn-primary" />
+            </div>
         );
     }
 }
