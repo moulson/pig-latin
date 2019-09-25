@@ -23,7 +23,7 @@ class NewTranslation extends React.Component{
                 <div>
                     <label>Text to translate</label>
                     <input
-                        class="form-control"
+                        className="form-control"
                         type="text"
                         name="translation[input]"
                         value={this.state.input}
