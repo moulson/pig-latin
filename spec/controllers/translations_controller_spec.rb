@@ -14,6 +14,42 @@ describe TranslationsController do
     }
   }
 
+  #Words that have multiple vowels after the inital consonant
+  let(:special){
+    {
+      input: "Question"
+    }
+  }
+  let(:multiple_words){
+    {
+      input: "Test Area"
+    }
+  }
+
+  let(:consonant_consonant){
+    {
+      input: "Trimmed"
+    }
+  }
+
+  let(:consonant_vowel){
+    {
+      input: "Testing"
+    }
+  }
+
+  let(:vowel){
+    {
+      input: "Assessment"
+    }
+  }
+
+  let(:sentence){
+    {
+      input: "The Quick Brown Fox Jumps Over The Lazy Dog"
+    }
+  }
+
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
     
@@ -115,9 +151,42 @@ describe TranslationsController do
   end
 
   describe 'Translation' do
-    it 'translated consonants in a row correctly' do
-
+    it 'translates consonant clusters a row correctly' do
+      post :create, params: {translation: consonant_consonant}, session: valid_session
+      the_post = Translation.first
+      expect(the_post.output).to eq('Immedtray')
     end
+
+    it 'translates words beginning with vowels correctly' do
+      post :create, params: {translation: vowel}, session: valid_session
+      the_post = Translation.first
+      expect(the_post.output).to eq('Assessmentay')
+    end
+
+    it 'translates special cases' do
+      post :create, params: {translation: special}, session: valid_session
+      the_post = Translation.first
+      expect(the_post.output).to eq('Estionquay')
+    end
+
+    it 'translates consonant-vowel words correctly' do
+      post :create, params: {translation: consonant_vowel}, session: valid_session
+      the_post = Translation.first
+      expect(the_post.output).to eq('Estingtay')
+    end
+
+    it 'translates multiple words' do
+      post :create, params: {translation: multiple_words}, session: valid_session
+      the_post = Translation.first
+      expect(the_post.output).to eq('Esttay Areaay')
+    end
+
+    it 'translates a sentence' do
+      post :create, params: {translation: sentence}, session: valid_session
+      the_post = Translation.first
+      expect(the_post.output).to eq('Ethay Ickquay Ownbray Oxfay Umpsjay Overay Ethay Azylay Ogday')
+    end
+
   end
 
 end
