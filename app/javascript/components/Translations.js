@@ -3,25 +3,27 @@ import React from 'react'
 class Translations extends React.Component{
 
     state = {data: this.props.initialData};
+
     loadTranslationsFromServer = () => {
         var xhr = new XMLHttpRequest();
         xhr.open('get', '/translations.json', true);
         xhr.onload = function(){
-            const data = JSON.parse(xhr.responseText);
-            this.setState({data: data});
+            this.setState({
+                data: JSON.parse(xhr.responseText)
+            });
         }.bind(this)
         xhr.send()
     };
     
     handleTranslationSubmit = translation => {
-        console.log("here");
         translation.id = Date.now();
         this.setState({data: translation});
         var data = new FormData();
-        data.append('input', translation.input);
+        data.append('translation[input]', translation.input);
 
         var xhr = new XMLHttpRequest();
         xhr.open('post', '/translations.json', true)
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
         xhr.onload = function(){
             this.loadTranslationsFromServer();
         }.bind(this);
@@ -29,7 +31,7 @@ class Translations extends React.Component{
     }
 
     componentDidMount(){
-        this.loadTranslationsFromServer();
+        this.loadTranslationsFromServer
     }
 
     render(){
@@ -45,7 +47,6 @@ class Translations extends React.Component{
 class TranslationsTable extends React.Component{
     render(){
         var translations = this.props.data.map(function(translation){
-            console.log(translation);
             return(
                 <Translation input={translation.input} output={translation.output} id={translation.id} key={translation.id} />
             );
@@ -92,14 +93,10 @@ class TranslationForm extends React.Component{
                 onSubmit={this.handleSubmit}
             >
                 <input
-                    name="utf8"
-                    type="hidden"
-                    value="✓"
-                />
-                <input
                     type="text"
                     className="form-control"
                     name="translation[input]"
+                    onChange={this.handleInputChange}
                 />
                 <input
                     type="submit"
@@ -113,7 +110,6 @@ class TranslationForm extends React.Component{
 
 class Translation extends React.Component{
     render(){
-        console.log("translation");
         return(
             <tr>
                 <td>{this.props.input}</td>
