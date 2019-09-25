@@ -6,13 +6,15 @@ class Translations extends React.Component{
 
     loadTranslationsFromServer = () => {
         var xhr = new XMLHttpRequest();
-        xhr.open('get', '/translations.json', true);
-        xhr.onload = function(){
+        xhr.open('get', 'translations.json', true);
+        xhr.onload = () => {
+            console.log(this.state.data);
             this.setState({
-                data: JSON.parse(xhr.responseText)
+                data: ["test"]
             });
-        }.bind(this)
-        xhr.send()
+            console.log(this.state.data);
+        };
+        xhr.send();
     };
     
     handleTranslationSubmit = translation => {
