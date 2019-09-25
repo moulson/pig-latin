@@ -14,9 +14,4 @@ RSpec.describe "translations/index", type: :view do
     ])
   end
 
-  it "renders a list of translations" do
-    render
-    assert_select "tr>td", :text => "Input".to_s, :count => 2
-    assert_select "tr>td", :text => "Output".to_s, :count => 2
-  end
 end

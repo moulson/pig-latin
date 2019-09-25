@@ -14,9 +14,9 @@ class Translations extends React.Component{
     };
     
     handleTranslationSubmit = translation => {
+        console.log("here");
         translation.id = Date.now();
         this.setState({data: translation});
-
         var data = new FormData();
         data.append('input', translation.input);
 
@@ -47,12 +47,21 @@ class TranslationsTable extends React.Component{
         var translations = this.props.data.map(function(translation){
             console.log(translation);
             return(
-                <Translation input={translation.input} output={translation.output} id={translation.id} />
+                <Translation input={translation.input} output={translation.output} id={translation.id} key={translation.id} />
             );
         })
         return (
-            <table>
-                {translations}
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Original</th>
+                        <th>Translated</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {translations}
+                </tbody>
             </table>
         );
     }
@@ -115,7 +124,7 @@ class Translation extends React.Component{
                         <a href={`/translations/${this.props.id}/edit`} className="btn btn-default">Edit</a>
                         <a 
                             href={`/translations/${this.props.id}`} 
-                            className="btn btn-default"
+                            className="btn btn-danger"
                             rel="nofollow"
                             data-confirm="Are you sure?"
                             data-method="delete"
