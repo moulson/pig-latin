@@ -31,6 +31,16 @@
             <ul class="nav navbar-nav">
               <li><%= link_to 'Translations', translations_path %></li>
               <li><%= link_to 'New Translation', new_translation_path %></li>
+              <% if current_user && current_user.role == "Admin" %>
+                <li><%= link_to "Users", users_path %></li>
+                <li><%= link_to "Create User", new_user_path %></li>
+              <% end %>
+              <% if current_user %>
+                <li>Logged in as <%= current_user.email %></li>
+                <li><%= link_to "Log Out", logout_path %></li>
+              <% else %>
+                <li><%= link_to "Log In", login_path %></li>
+              <% end %>
             </ul>
             
           </div><!-- /.navbar-collapse -->
