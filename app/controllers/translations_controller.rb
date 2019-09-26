@@ -24,16 +24,23 @@ class TranslationsController < ApplicationController
   # POST /translations
   # POST /translations.json
   def create
-    @translation = Translation.new(translation_params)
-    @translation.output = translate(@translation.input)
-    
-    respond_to do |format|
-      if @translation.save
-        format.html { redirect_to translations_path, notice: 'Translation was successfully created.' }
-        format.json { render :show, status: :created, location: @translation }
-      else
-        format.html { render :new }
-        format.json { render json: @translation.errors, status: :unprocessable_entity }
+    if current_user
+      @translation = Translation.new(translation_params)
+      @translation.output = translate(@translation.input)
+      
+      respond_to do |format|
+        if @translation.save
+          format.html { redirect_to translations_path, notice: 'Translation was successfully created.' }
+          format.json { render :show, status: :created, location: @translation }
+        else
+          format.html { render :new }
+          format.json { render json: @translation.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to translations_path, notice: 'You are not logged in', status: 403}
+        format.json { render json: {error: "Not logged in"}, status: 403}
       end
     end
   end
@@ -56,10 +63,12 @@ class TranslationsController < ApplicationController
   # DELETE /translations/1
   # DELETE /translations/1.json
   def destroy
-    @translation.destroy
-    respond_to do |format|
-      format.html { redirect_to translations_url, notice: 'Translation was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user && current_user.role == "Admin"
+      @translation.destroy
+      respond_to do |format|
+        format.html { redirect_to translations_url, notice: 'Translation was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

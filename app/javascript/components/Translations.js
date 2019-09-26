@@ -1,28 +1,27 @@
 import React from 'react'
 
 class Translations extends React.Component{
-
-    state = {data: this.props.initialData};
+    constructor(props){
+        super(props);
+        this.state = {data: this.props.initialData};
+        this.handleTranslationSubmit = this.handleTranslationSubmit.bind(this);
+    }
 
     loadTranslationsFromServer = () => {
         var xhr = new XMLHttpRequest();
         xhr.open('get', 'translations.json', true);
         xhr.onload = () => {
-            console.log(this.state.data);
-            this.setState({
-                data: ["test"]
-            });
-            console.log(this.state.data);
+            var data = JSON.parse(xhr.responseText);
+            this.setState({data: data});
         };
         xhr.send();
     };
     
     handleTranslationSubmit = translation => {
         translation.id = Date.now();
-        this.setState({data: translation});
         var data = new FormData();
         data.append('translation[input]', translation.input);
-
+        
         var xhr = new XMLHttpRequest();
         xhr.open('post', '/translations.json', true)
         xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
@@ -33,10 +32,11 @@ class Translations extends React.Component{
     }
 
     componentDidMount(){
-        this.loadTranslationsFromServer
+        this.loadTranslationsFromServer();
     }
 
     render(){
+        
         return(
             <div className="translations">
                 <TranslationsTable data={this.state.data} />
