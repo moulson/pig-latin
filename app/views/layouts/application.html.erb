@@ -50,6 +50,9 @@
     </div>
 
     <div class="container">
+      <% unless current_user %>
+      <div class="text-danger">You are not logged in, translations will be read only unless you log in. Test accounts are available on the home page</div>
+      <% end %>
       <%= yield %>
     </div>
   </body>
