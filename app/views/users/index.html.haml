@@ -1,23 +1,23 @@
 %h1 Listing users
 
-%table
+%table.table.table-striped
   %thead
     %tr
       %th Email
-      %th Password
-      %th
-      %th
+      %th Role
       %th
 
   %tbody
     - @users.each do |user|
       %tr
         %td= user.email
-        %td= user.password
-        %td= link_to 'Show', user
-        %td= link_to 'Edit', edit_user_path(user)
-        %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= user.role
+        %td
+          .btn-group 
+            =link_to 'Show', user, class: 'btn btn-default'
+            =link_to 'Edit', edit_user_path(user), class: 'btn btn-default'
+            =link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
 %br
 
-= link_to 'New User', new_user_path
+= link_to 'New User', new_user_path, class: 'btn btn-default'
