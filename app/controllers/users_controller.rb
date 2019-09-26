@@ -28,7 +28,12 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+
+    
     @user = User.new(user_params)
+    
+    #set default role if none is present
+    unless @user.role.present? then @user.role = "Standard" end
 
     respond_to do |format|
       if @user.save

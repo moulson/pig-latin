@@ -92,6 +92,33 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to be_successful
       end
     end
+    context "with blank role" do
+      let(:blank_role){
+        {
+          email: "test",
+          password: "test",
+        }
+      }
+
+      it 'sets the role to Standard' do
+        post :create, params: {user: blank_role}, session: valid_session
+        expect(User.last.role).to eq("Standard")
+      end
+    end
+
+    context "with admin role" do
+      let(:admin_role){
+        {
+          email: "test",
+          password: "test",
+          role: "Admin"
+        }
+      }
+      it 'should keep the role as admin' do
+        post :create, params: {user: admin_role}, session: valid_session
+        expect(User.last.role).to eq("Admin")
+      end
+    end
   end
 
   describe "PUT #update" do

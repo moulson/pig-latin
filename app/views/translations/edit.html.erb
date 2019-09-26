@@ -3,13 +3,14 @@
 <%= form_with(model: @translation, local: true) do |form| %>
     <div class="field">
         <%= form.label :input %>
-        <%= form.text_field :input %>
+        <%= form.text_field :input, class: 'form-control' %>
     </div>
     <div class="actions">
-        <%= form.submit %>
+        <%= form.submit "Update", class: 'btn btn-primary' %>
     </div>
 <% end %>
 
-<%= link_to 'Show', @translation %>
-|
-<%=link_to 'Back', translations_path %>
+<div class="btn-group">
+    <%= link_to 'Show', @translation, class: 'btn btn-default' %>
+    <%=link_to 'Back', translations_path, class: 'btn btn-default' %>
+</div>
