@@ -69,7 +69,13 @@ class TranslationsController < ApplicationController
         format.html { redirect_to translations_url, notice: 'Translation was successfully destroyed.' }
         format.json { head :no_content }
       end
+    else
+      respond_to do |format|
+        format.html { redirect_to translations_url, notice: 'Wrong permissions' }
+        format.json { head :no_content }
+      end
     end
+
   end
 
   def translate(input)

@@ -17,9 +17,14 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe "GET #destroy" do
-    it "returns http success" do
+    it "returns http found/redirect" do
       get :destroy
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:found)
+    end
+    
+    it "redirects to the app root" do
+      get :destroy
+      expect(response).to redirect_to(root_path)
     end
   end
 

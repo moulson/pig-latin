@@ -42,13 +42,13 @@ describe TranslationsController do
     end
   end
   context 'with admin account' do
-    let(:current_user){
-      User.create(
-        email: "test@test.com",
-        password: "anything",
+    before(:each) do
+      controller.stub(:current_user) { User.new(
+        email: "test",
+        password: "test",
         role: "Admin"
-      )
-    }
+      )}
+    end
     describe "GET #edit" do
       it "returns a success response" do
         translation = Translation.create! valid_attributes
@@ -112,10 +112,10 @@ describe TranslationsController do
           skip("Add assertions for updated state")
         end
   
-        it "redirects to the translation" do
+        it "redirects to the translations index" do
           translation = Translation.create! valid_attributes
           put :update, params: {id: translation.to_param, translation: valid_attributes}
-          expect(response).to redirect_to(translation)
+          expect(response).to redirect_to(translations_path)
         end
       end
   
@@ -130,13 +130,13 @@ describe TranslationsController do
   end
 
   context 'with standard account' do
-    let(:current_user){
-      User.create(
-        email: "test@test.com",
-        password: "anything",
+    before(:each) do
+      controller.stub(:current_user) { User.new(
+        email: "test",
+        password: "test",
         role: "Standard"
-      )
-    }
+      )}
+    end
     describe "GET #edit" do
       it "returns a success response" do
         translation = Translation.create! valid_attributes
@@ -219,13 +219,14 @@ describe TranslationsController do
   end  
 
   describe 'Translation' do
-    let(:current_user){
-      User.create(
-        email: "test@test.com",
-        password: "anything",
+    before(:each) do
+      controller.stub(:current_user) { User.new(
+        email: "test",
+        password: "test",
         role: "Admin"
-      )
-    }
+      )}
+    end
+
     let(:special){
       {
         input: "Question"
@@ -261,11 +262,8 @@ describe TranslationsController do
       }
     }
 
-    it 'user is an admin' do
-      expect(current_user.role).to eq("Admin")
-    end
-
     it 'translates consonant clusters a row correctly' do
+      
       post :create, params: {translation: consonant_consonant}
       the_post = Translation.first
       expect(the_post.output).to eq('Immedtray')
